@@ -42,6 +42,8 @@ class MyVideosViewController: UIViewController, UITableViewDataSource, UITableVi
     private var task: Task?
     private var videoRefreshManager: VideoRefreshManager?
     
+    var imagePicker: ImagePicker!
+    
     deinit
     {
         self.videoRefreshManager?.cancelAll()
@@ -59,6 +61,8 @@ class MyVideosViewController: UIViewController, UITableViewDataSource, UITableVi
         self.setupTableView()
         self.setupRefreshControl()
         self.setupVideoRefreshManager()
+        
+        self.imagePicker = ImagePicker(presentationController: self, delegate: self)
         
         self.refresh()
     }
@@ -141,6 +145,15 @@ class MyVideosViewController: UIViewController, UITableViewDataSource, UITableVi
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
+        
+        let video = self.items[indexPath.row]
+        
+        let viewController = PlayerViewController(nibName: PlayerViewController.NibName, bundle:Bundle.main)
+        viewController.video = video
+        let navigationController = UINavigationController(rootViewController: viewController)
+        navigationController.view.backgroundColor = UIColor.black
+        self.present(navigationController, animated: true, completion: nil)
+        
         
     }
     
@@ -228,6 +241,11 @@ class MyVideosViewController: UIViewController, UITableViewDataSource, UITableVi
                         // Schedule video refreshes
                         for video in strongSelf.items
                         {
+                            print(video.link)
+                            print(video.name)
+                            print(video.uri)
+                            print(video.resourceKey)
+                            
                             if video.videoStatus == .uploading || video.videoStatus == .transcoding
                             {
                                 strongSelf.videoRefreshManager?.refresh(video: video)
@@ -244,6 +262,11 @@ class MyVideosViewController: UIViewController, UITableViewDataSource, UITableVi
             self.presentRefreshErrorAlert(with: error)
         }
     }
+    
+    @IBAction func didTapSelect(_ sender: UIButton) {
+        self.imagePicker.present(from: sender)
+    }
+    
     
     @IBAction func didTapUpload(_ sender: UIButton)
     {
@@ -291,5 +314,13 @@ class MyVideosViewController: UIViewController, UITableViewDataSource, UITableVi
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         
         self.present(alert, animated: true, completion: nil)
+    }
+}
+
+extension MyVideosViewController: ImagePickerDelegate {
+
+    func didSelect(image: UIImage?) {
+        print("image selected")
+        print(image ?? "none")
     }
 }

@@ -49,6 +49,7 @@ class VideoCell: UITableViewCell
     @IBOutlet weak var progressConstraint: NSLayoutConstraint!
     @IBOutlet weak var deleteButton: UIButton!
     
+    @IBOutlet weak var titleLabel: UILabel!
     // MARK:
 
     weak var delegate: VideoCellDelegate?
@@ -119,7 +120,7 @@ class VideoCell: UITableViewCell
         self.thumbnailImageView?.image = nil
         self.statusLabel.text = ""
         self.errorLabel.text = ""
-
+        self.titleLabel.text = ""
         self.update(state: .finished)
     }
     
@@ -150,6 +151,7 @@ class VideoCell: UITableViewCell
     private func setupStatusLabel(video: VIMVideo)
     {
         self.statusLabel.text = video.status
+        self.titleLabel.text = video.name
     }
 
     // MARK: Descriptor Setup

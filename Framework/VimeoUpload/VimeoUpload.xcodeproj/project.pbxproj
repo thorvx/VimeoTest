@@ -491,7 +491,6 @@
 				AF40D4E71CCE9CB600753ABA /* Sources */,
 				AF40D4E81CCE9CB600753ABA /* Frameworks */,
 				AF40D4E91CCE9CB600753ABA /* Resources */,
-				18937F269D611F2CD4CBFE4F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -561,28 +560,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		18937F269D611F2CD4CBFE4F /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/../../Pods/Target Support Files/Pods-VimeoUploadTests/Pods-VimeoUploadTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/VimeoNetworking/VimeoNetworking.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/VimeoNetworking.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/../../Pods/Target Support Files/Pods-VimeoUploadTests/Pods-VimeoUploadTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		26537CF0460F19BBE893AA2A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
